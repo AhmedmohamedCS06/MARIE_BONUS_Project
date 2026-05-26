@@ -1,0 +1,640 @@
+Input
+Store UserInput
+
+/...............................................................
+
+IF1,Load UserInput
+	Subt One
+	SkipCond 400
+	Jump IF2
+		Input
+		Store x
+		Input
+		Store y
+		Load x
+		Add y
+		Store sum
+		Output
+EndIF1,Halt
+
+/...............................................................
+
+IF2, Load UserInput
+	 Subt Two
+	 SkipCond 400
+	 Jump IF3
+	 	Input
+		Store x
+		Input
+		Store y
+		Load x
+		Subt y
+		Store sum
+		Output
+ENDIF2,Halt
+
+/...............................................................
+
+IF3,Load UserInput
+	Subt Three
+	SkipCond 400
+	Jump IF4
+		Input
+		Store x
+		Input
+		Store times
+				Load Zero
+				Store y
+				Store Total
+		loopMult,Load y
+				 Subt times
+				 SkipCond 000
+				 Jump Summulti
+				 	Load Total
+				 	Add x
+				 	Store Total
+				 	Load y
+				 	Add One
+				 	Store y
+					Jump loopMult
+		Summulti,Load Total
+				Output
+ENDIF3,Halt
+
+/...............................................................
+
+IF4,Load UserInput
+	Subt Four
+	SkipCond 400
+	Jump IF5
+	Input
+	Store x
+	Input
+	Store y
+	LoopDivision,Load x
+				Subt y
+				Store x
+				SkipCond 800
+					Jump SumLoopDivision
+				Load counter
+				Add One
+				Store counter
+				Jump LoopDivision
+	SumLoopDivision,Load counter
+					Output
+ENDIF4,Halt
+
+/...............................................................
+
+IF5,Load UserInput
+	Subt Five
+	SkipCond 400
+	Jump IF6
+            Input
+            Store x
+            Input
+            Store y
+LoopModulo, Load x
+            Subt y
+            SkipCond 000
+                Jump StoreAndContinue
+            Load x
+            Output
+            Halt
+StoreAndContinue, Store x
+                  Jump LoopModulo
+ENDIF5,Halt
+
+/...............................................................
+
+IF6, Load UserInput
+     Subt Six
+     SkipCond 400
+     Jump IF7
+     Load Zero
+     Store SumArray
+     Load Adder
+     Store Next
+     Load Num
+     Store counter2
+Loopsumarray, Load counter2
+      SkipCond 800
+      Jump EndLoopsumarray
+      Load SumArray
+      AddI Next
+      Store SumArray
+      Load Next
+      Add One
+      Store Next
+      Load counter2
+      Subt One
+      Store counter2
+      Jump Loopsumarray
+EndLoopsumarray, Load SumArray
+         Output
+ENDIF6,  Halt
+
+/...............................................................
+
+IF7, Load UserInput
+     Subt Seven
+     SkipCond 400
+     Jump IF8
+     Load Zero
+     Store SumArray
+     Load Adder
+     Store Next
+     Load Num
+     Store counter2
+Loopavgarray, Load counter2
+      SkipCond 800
+      Jump DivAvg
+      Load SumArray
+      AddI Next
+      Store SumArray
+      Load Next
+      Add One
+      Store Next
+      Load counter2
+      Subt One
+      Store counter2
+      Jump Loopavgarray
+DivAvg, Load Zero
+        Store counter
+LoopDivAvg, Load SumArray
+            Subt Num
+            SkipCond 000
+            Jump ContinueDiv
+            Jump EndLoopavgarray
+ContinueDiv, Store SumArray
+             Load counter
+             Add One
+             Store counter
+             Jump LoopDivAvg
+EndLoopavgarray, Load counter
+                 Output
+ENDIF7,  Halt
+
+/...............................................................
+
+IF8,      Load UserInput
+          Subt Eight
+          SkipCond 400
+          Jump IF9
+          Load Adder
+          Store Next
+          Load Num
+          Store counter
+          LoadI Next
+          Store MAXVALUE
+myLoop,   Load counter
+          Subt One
+          Store counter
+          SkipCond 800
+          Jump ENDIF8
+          Load Next
+          Add One
+          Store Next
+          LoadI Next
+          Store temp
+          Subt MAXVALUE
+          SkipCond 800
+          Jump myLoop
+          Load temp
+          Store MAXVALUE
+          Jump myLoop
+ENDIF8,   Load MAXVALUE
+          Output
+          Halt
+
+/...............................................................
+
+IF9,      Load UserInput
+          Subt Nine
+          SkipCond 400
+          Jump IF10
+		  Load Adder
+          Store Next
+          Load Num
+          Store counter
+		  LoadI Next
+		  Store MINVALUE
+		myloop2,Load counter
+				Subt One
+				Store counter
+				SkipCond 800
+				Jump ENDIF9
+				Load Next
+				Add One
+				Store Next
+				LoadI Next
+				Store temp
+				Subt MINVALUE
+				SkipCond 000
+				Jump myloop2
+				Load temp
+				Store MINVALUE
+				Jump myloop2
+ENDIF9,Load MINVALUE
+Output
+Halt
+
+/...............................................................
+
+IF10,       Load UserInput
+          	Subt Ten
+          	SkipCond 400
+          	Jump IF11
+			Load Adder
+			Store Next
+			Load Num
+			Store counter
+			LoadI Next
+			Store x
+			Store times
+			Load Zero
+				Store y
+				Store Total
+		loopMult2,Load y
+				 Subt times
+				 SkipCond 000
+				 Jump Summulti2
+				 	Load Total
+				 	Add x
+				 	Store Total
+				 	Load y
+				 	Add One
+				 	Store y
+					Jump loopMult2
+		Summulti2,Load Total
+			      Store myNorm
+		mynormloop,Load counter
+					Subt One
+					Store counter
+					SkipCond 800
+					Jump ENDIF10
+					Load Next
+					Add One
+					Store Next
+					Store times
+					LoadI Next
+			Store x
+			Store times
+			Load Zero
+				Store y
+				Store Total
+		loopMult3,Load y
+				 Subt times
+				 SkipCond 000
+				 Jump Summulti3
+				 	Load Total
+				 	Add x
+				 	Store Total
+				 	Load y
+				 	Add One
+				 	Store y
+					Jump loopMult3
+		Summulti3,Load Total
+					Add myNorm
+					Store myNorm
+					Jump mynormloop
+ENDIF10,    Load myNorm
+            Store Remainder
+            Load One
+            Store Odd
+            Load Zero
+            Store Root
+SqrtLoop,   Load Remainder
+            Subt OddNum
+            SkipCond 000
+            Jump KeepGoing
+            Jump PrintResult
+KeepGoing,  Store Remainder
+            Load Root
+            Add One
+            Store Root
+            Load OddNum
+            Add Two
+            Store OddNum
+            Jump SqrtLoop
+PrintResult,Load Root
+Output
+Halt
+
+/...............................................................
+
+IF11,       Load UserInput
+          	Subt Eleven
+          	SkipCond 400
+          	Jump IF12
+			LoadI ptr1
+			AddI ptr2
+			StoreI ptr3
+			Output
+			ptrloop,Load ptr1
+			Add One
+			Store ptr1
+			Load ptr2
+			Add One
+			Store ptr2
+			Load ptr3
+			Add One
+			Store ptr3
+			LoadI ptr1
+			AddI ptr2
+			StoreI ptr3
+			Output
+			LoadI ptr1
+			SkipCond 400
+			jump ptrloop
+			Jump ENDIF11
+ENDIF11,Halt
+
+/...............................................................
+
+IF12,       Load UserInput
+          	Subt Twelve
+          	SkipCond 400
+          	Jump IF13
+			LoadI ptr1
+			store tempptr1
+			LoadI ptr2
+			Store tempptr2
+			Load tempptr1
+			Subt tempptr2
+			StoreI ptr3
+			Output
+			ptrloop2,Load ptr1
+			Add One
+			Store ptr1
+			Load ptr2
+			Add One
+			Store ptr2
+			Load ptr3
+			Add One
+			Store ptr3
+			Load Zero
+			store tempptr1
+			Store tempptr2
+			LoadI ptr1
+			Store tempptr1
+			LoadI ptr2
+			Store tempptr2
+			Load tempptr1
+			Subt tempptr2
+			StoreI ptr3
+			Output
+			LoadI ptr1
+			SkipCond 400
+			jump ptrloop2
+			Jump ENDIF12
+ENDIF12,Halt
+
+/...............................................................
+
+IF13,       Load UserInput
+          	Subt Thirteen
+          	SkipCond 400
+          	Jump IF14
+			LoadI ptr1
+			store tempptr1
+			LoadI ptr2
+			Store tempptr2
+			Load Zero
+			Store y
+			Store Total
+		loopMult22,Load y
+				 Subt tempptr2
+				 SkipCond 000
+				 Jump Summulti22
+				 	Load Total
+				 	Add tempptr1
+				 	Store Total
+				 	Load y
+				 	Add One
+				 	Store y
+					Jump loopMult22
+		Summulti22,Load Total
+			StoreI ptr3
+			Output
+			ptrloop3,Load ptr1
+			Add One
+			Store ptr1
+			Load ptr2
+			Add One
+			Store ptr2
+			Load ptr3
+			Add One
+			Store ptr3
+			Load Zero
+			store tempptr1
+			Store tempptr2
+			LoadI ptr1
+			Store tempptr1
+			LoadI ptr2
+			Store tempptr2
+			Load Zero
+			Store y
+			Store Total
+		loopMult223,Load y
+				 Subt tempptr2
+				 SkipCond 000
+				 Jump Summulti223
+				 	Load Total
+				 	Add tempptr1
+				 	Store Total
+				 	Load y
+				 	Add One
+				 	Store y
+					Jump loopMult223
+		Summulti223,Load Total
+			StoreI ptr3
+			Output
+			LoadI ptr1
+			SkipCond 400
+			jump ptrloop3
+			Jump ENDIF13
+ENDIF13,Halt
+
+/...............................................................
+
+IF14,       Load UserInput
+            Subt Fourteen
+            SkipCond 400
+            Jump IF15
+            Load ptrMat1
+            Store NextMat1
+            Load ptrMat2
+            Store NextMat2
+            Load ptrMat3
+            Store NextMat3
+            Load TotalElements
+            Store matCounter
+Loop2D,     Load matCounter
+            SkipCond 800
+            Jump ENDIF14
+            LoadI NextMat1
+            AddI NextMat2
+            StoreI NextMat3
+            Output
+            Load NextMat1
+            Add One
+            Store NextMat1
+            Load NextMat2
+            Add One
+            Store NextMat2
+            Load NextMat3
+            Add One
+            Store NextMat3
+            Load matCounter
+            Subt One
+            Store matCounter
+            Jump Loop2D
+ENDIF14,    Halt
+
+/...............................................................
+
+IF15,       Load UserInput
+            Subt Fifteen
+            SkipCond 400
+            Jump ENDIF15
+            Load ptrMat1
+            Store NextMat1
+            Load ptrMat2
+            Store NextMat2
+            Load ptrMat3
+            Store NextMat3
+            Load TotalElements
+            Store matCounter
+Loop2DSub,  Load matCounter
+            SkipCond 800
+            Jump ENDIF15
+            LoadI NextMat1
+            Store tempptr1
+            LoadI NextMat2
+            Store tempptr2
+            Load tempptr1
+            Subt tempptr2
+            StoreI NextMat3
+            Output
+            Load NextMat1
+            Add One
+            Store NextMat1
+            Load NextMat2
+            Add One
+            Store NextMat2
+            Load NextMat3
+            Add One
+            Store NextMat3
+            Load matCounter
+            Subt One
+            Store matCounter
+            Jump Loop2DSub
+ENDIF15,    Halt
+/...............................................................
+
+UserInput, DEC 0
+tempptr1, DEC 0
+tempptr2, DEC 0
+y,      DEC 0
+x,      DEC 0
+sum,    DEC 0
+Two,    DEC 2
+Three,  DEC 3
+Four,   DEC 4
+Five,   DEC 5
+Six,    DEC 6
+Seven,  DEC 7
+Eight,  DEC 8
+Nine,   DEC 9
+Ten,    DEC 10
+Eleven, DEC 11
+Twelve, DEC 12
+Thirteen, DEC 13
+Fifteen,  DEC 15
+Sixteen, DEC 16
+tempMat, DEC 0
+Zero,   DEC 0
+times,  DEC 0
+Total,  DEC 0
+counter, DEC 1
+One,    DEC 1
+MAXVALUE, DEC 0
+MINVALUE, DEC 0
+myNorm,  DEC 0
+Odd,    DEC 1
+Result, DEC 0
+temp,   DEC 0
+Num,    DEC 7
+SumArray, DEC 0
+counter2, DEC 0
+Remainder, DEC 0
+OddNum,    DEC 0
+Root,      DEC 0
+Adder,   ADR Arr
+Next,    HEX 0
+Arr,     DEC 20
+         DEC 20
+         DEC 20
+         DEC 20
+         DEC 20
+         DEC 20
+         DEC 20
+ptr1, ADR Arr1
+ptr2, ADR Arr2
+ptr3, ADR Arr3
+Arr1, DEC 2
+      DEC 3
+      DEC 4
+      DEC 8
+      DEC 0
+Arr2, DEC 6
+      DEC 7
+      DEC 8
+      DEC 10
+      DEC 0
+Arr3, DEC 0
+      DEC 0
+      DEC 0
+      DEC 0
+      DEC 0
+Fourteen,      DEC 14
+TotalElements, DEC 6
+matCounter,    DEC 0
+NextMat1,      HEX 0
+NextMat2,      HEX 0
+NextMat3,      HEX 0
+ptrMat1,       ADR Mat1
+ptrMat2,       ADR Mat2
+ptrMat3,       ADR Mat3
+Mat1,          DEC 1
+               DEC 2
+               DEC 3
+               DEC 4
+               DEC 5
+               DEC 6
+Mat2,          DEC 10
+               DEC 20
+               DEC 30
+               DEC 40
+               DEC 50
+               DEC 60
+Mat3,          DEC 0
+               DEC 0
+               DEC 0
+               DEC 0
+               DEC 0
+               DEC 0
+
+Seventeen, DEC 17
+Eighteen,  DEC 18
+Nineteen,  DEC 19
+Twenty,    DEC 20
+a11,       DEC 0
+a12,       DEC 0
+a21,       DEC 0
+a22,       DEC 0
+det,       DEC 0
+prodA,     DEC 0
+prodB,     DEC 0
+negVal,    DEC 0
